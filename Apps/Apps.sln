@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogo", "src\Services\Catalogo\Catalogo.csproj", "{29184348-854C-4EC0-A7EB-00799DF79729}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogo.API", "src\Services\Catalogo\Catalogo.API.csproj", "{29184348-854C-4EC0-A7EB-00799DF79729}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{51327148-7360-439D-B556-563F02B6C82E}"
 EndProject
