@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "084b0c7b-ecad-4c03-a0da-b17d0d4c3b6d",
+		"name": "keycloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17349852"
+	},
+	"item": [
+		{
+			"name": "1 - client-catalogo-token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"// Limpa dados antigos\r",
+							"pm.collectionVariables.set(\"access_token_catalogo_api\");\r",
+							"pm.collectionVariables.set(\"expires_in\");\r",
+							"pm.collectionVariables.set(\"refresh_expires_in\");\r",
+							"pm.collectionVariables.set(\"refresh_token\");\r",
+							"pm.collectionVariables.set(\"token_type\");\r",
+							"pm.collectionVariables.set(\"not-before-policy\");\r",
+							"pm.collectionVariables.set(\"session_state\");\r",
+							"pm.collectionVariables.set(\"scope\");\r",
+							"\r",
+							"// Atribui valores nas variáveis\r",
+							"if (responseCode.code === 200) {\r",
+							"    var response = JSON.parse(responseBody);\r",
+							"    pm.collectionVariables.set(\"access_token_catalogo_api\", response.access_token);\r",
+							"    pm.collectionVariables.set(\"expires_in\", response.expires_in);\r",
+							"    pm.collectionVariables.set(\"refresh_expires_in\", response.refresh_expires_in);\r",
+							"    pm.collectionVariables.set(\"refresh_token\", response.refresh_token);\r",
+							"    pm.collectionVariables.set(\"token_type\", response.token_type);\r",
+							"    pm.collectionVariables.set(\"not-before-policy\", response[\"not-before-policy\"] );\r",
+							"    pm.collectionVariables.set(\"session_state\", response.session_state);\r",
+							"    pm.collectionVariables.set(\"scope\", response.scope);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "{{grant_type}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/catalogo/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"catalogo",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Catologo - API - Todos os itens",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{access_token_catalogo_api}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7167/api/CatalogoItems",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7167",
+					"path": [
+						"api",
+						"CatalogoItems"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "grant_type",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "client_id",
+			"value": "catalogo-api",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "catalogo",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "1234",
+			"type": "string"
+		},
+		{
+			"key": "client_secret",
+			"value": "hyBJj0dOkg6vh0hVwf0UFxq9STfv0Ncg",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "expires_in",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_expires_in",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token_type",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "not-before-policy",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "session_state",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "scope",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
